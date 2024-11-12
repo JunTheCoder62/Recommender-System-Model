@@ -3,7 +3,6 @@
 Recommender Systems are intelligent systems which are used as an expert in making decisions in real life problems. They have replicated the human experts and positively affected the e-commerce by changing the behavior of customers and sellers. Book Recommender Systems (BRS) help the librarians in the management of library catalog efficiently. It supports the readers in choosing the best book for them. Merchants implement the BRS to manage their inventory and gain more profit. In this paper, we have discussed traditional techniques of recommendation, machine learning techniques and their categories i.e. supervised, unsupervised, semi-supervised and reinforcement learning. Also, Machine Learning (ML) techniques used for the book recommendation and their effect on book recommender systems have been discussed. The work will help the researchers in exploring new dimension for recommendation technology in general and book recommendation in particular.
 
 # Business Understanding
-
 ## Problem Statement
 - Bagaimana cara membuat model machine learning untuk rekomendasi buku menggunakan metode Content - Based Filtering yang diinginkan oleh user ?
 - Bagaimana Evaluasi model yang dibuat dengan menggunakan metode Content - Based Filtering ?
@@ -84,13 +83,35 @@ Pada dataset yang dipilih terdapat `0` missing value sehingga data dapat langsun
 | `rating`       | 0              |
 | `rating_votes` | 0              |
 
+
+# Modelling
 ## Vektrorisasi Menggunakan TF-IDF
+TF-IDF adalah algoritma yang mengidentifikasi kata-kata penting dalam suatu corpus. TF (Term Frequency) mewakili frekuensi kemunculan kata dalam teks, dihitung dari jumlah kemunculan kata tertentu dibandingkan total kata dalam corpus. Sementara itu, IDF (Inverse Document Frequency) mengukur seberapa penting suatu kata dalam keseluruhan corpus.
 
+Dalam sistem rekomendasi buku ini, kolom `genres` digunakan untuk menemukan kemiripan antar buku, yang memungkinkan kita menghitung nilai kesamaan antara satu buku dengan buku lainnya. Untuk mendapatkan nilai kemiripan tersebut, kolom `genres` diubah menjadi vektor menggunakan algoritma TF-IDF.
 
+Dalam model ini, fungsi `TfidfVectorizer()` dari library `Scikit-learn` digunakan untuk mengonversi kolom "genre" pada dataset menjadi vektor, dengan hasil vektorisasi yang ditampilkan pada gambar berikut.
 
+<img width="1101" alt="Screenshot 2024-11-12 165938" src="https://github.com/user-attachments/assets/b1b3f9bd-5b80-47a0-8ea4-8f6e3ec2619f">
 
+Gambar .1 Vektorisasi Menggunakan TF-IDF
 
+## Cosine Similarity
+Setelah data dikonversi menjadi bentuk vektor, selanjutnya ukur tingkat kesamaan antara dua vektor dan menentukan apakah kedua vektor tersebut menunjuk ke arah yang sama. Semakin kecil sudut cosinus, semakin besar nilai cosine similarity.
 
+<img width="1142" alt="Screenshot 2024-11-12 191354" src="https://github.com/user-attachments/assets/7df590ac-1c7b-47c2-971a-d02cf2c9cb96">
+
+Gambar .2 Cosine Similarity
+
+## Recommendations Function
+Proses Modelling untuk membuat sebuah model Book Recommendations merupakan fungsi untuk mendapat _top-N Recommendations_. Setelah vektroisasi dari **Cosine Similarity** kita dapat menggunakan fitur `genres`. Hasil Recommendations dapat menerima input berupa judul buku `name` dan `genres`.
+
+<img width="1151" alt="Screenshot 2024-11-12 192343" src="https://github.com/user-attachments/assets/28aaa7bd-15d9-459f-be0c-c556a7b7383c">
+
+Gambar .3 top 5 Recommendations Book Function
+
+# Evaluasi
+Dalam project machine learning kali ini pembuatan model dengan menggunakan metode Content-Based Filtering dengan Ventorisasi TF-IDF dan Cosine Similarity untuk dapat menemukan derajat kemiripan antar `genres` buku dan membuat function untuk menampilkan beberapa rekomendasi buku dengan input judul buku. Pengukuran hasi yang diberikan dengan Precision untuk mengukur keakuratan model dapat diberikan dengan :
 
 
 
