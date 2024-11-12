@@ -111,7 +111,21 @@ Proses Modelling untuk membuat sebuah model Book Recommendations merupakan fungs
 Gambar .3 top 5 Recommendations Book Function
 
 # Evaluasi
-Dalam project machine learning kali ini pembuatan model dengan menggunakan metode Content-Based Filtering dengan Ventorisasi TF-IDF dan Cosine Similarity untuk dapat menemukan derajat kemiripan antar `genres` buku dan membuat function untuk menampilkan beberapa rekomendasi buku dengan input judul buku. Pengukuran hasi yang diberikan dengan Precision untuk mengukur keakuratan model dapat diberikan dengan :
+Dalam project machine learning kali ini pembuatan model dengan menggunakan metode Content-Based Filtering dengan Ventorisasi TF-IDF dan Cosine Similarity untuk dapat menemukan derajat kemiripan antar `genres` buku dan membuat function untuk menampilkan beberapa rekomendasi buku dengan input judul buku. Pengukuran hasi yang diberikan dengan Precision untuk mengukur keakuratan model dapat diberikan dengan rumus presisi :
+
+$$
+\text{Precision} = \dfrac{\text{of our recommendations that are relevant}}{\text{of the items we recommended}}
+$$
+
+Dengan hasil prediksi buku yang diberikan dapat dilihat bahwa model menampilkan top 5 buku yang relevan dengan judul buku yang di input. Maka dapat disimpulkan bahwa model memeiliki _Precision_ sampai 100%.
+
+# Conclusion
+Dalam pembuatan projek kali ini dapat disimpulkan bahwa:
+- Pembuatan model untuk Book Recommendation dengan Content-Based Filtering dengan menggunakan vektorisasi TfidfVectorizer dan Cosine Similarity untuk menentukan relevansi antara Buku untuk user.
+- Evaluasi model menggunakan metode Content-Based Filtering dilakukan untuk memastikan akurasi dan efektivitas model dalam memberikan rekomendasi buku top 5 yang relevan dengan input yang diberikan dengan _Precision_ 100%
+
+# Reference
+_Anwar, K., Siddiqui, J., & Saquib Sohail, S. (2019, February). Machine learning techniques for book recommendation: an overview. In Proceedings of International Conference on Sustainable Computing in Science, Technology and Management (SUSCOM), Amity University Rajasthan, Jaipur-India._
 
 
 
