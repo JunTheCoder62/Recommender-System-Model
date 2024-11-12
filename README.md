@@ -46,6 +46,8 @@ Source data yang didapat merupakan data yang berasal dari Githun dengan Source L
 |                                | Recommended Series IDs                     | ID dari seri yang direkomendasikan berdasarkan novel ini            |
 |                                | Recommendation List IDs                    | ID dari daftar rekomendasi yang mencakup novel ini                  |
 
+
+# Data Prepartion
 ## Handling Data
 Beberapa kolom mungkin tidak diperlukan dalam analisis atau tujuan spesifik yang ingin dicapai. Misalnya, kolom-kolom yang berkaitan dengan data penerbitan, peringkat aktivitas, atau informasi terkait lainnya mungkin tidak relevan jika fokus analisis adalah pada aspek lain dari dataset. maka beberapa dataset didrop agar meninggkatkan performa dan tidak overfitting pada model.
 ```python
@@ -82,7 +84,8 @@ Pada dataset yang dipilih terdapat `0` missing value sehingga data dapat langsun
 | `rating`       | 0              |
 | `rating_votes` | 0              |
 
-# Data Prepartion
+## Vektrorisasi Menggunakan TF-IDF
+
 
 
 
