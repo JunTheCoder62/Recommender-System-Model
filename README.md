@@ -57,6 +57,10 @@ Source data yang didapat merupakan data yang berasal dari Githun dengan Source L
 Gambar .0 Fitur genres buku
 Tabel ini memberikan gambaran tentang kombinasi genre buku yang ada dalam dataset, jumlah data untuk setiap kombinasi, dan persentase dari keseluruhan dataset. fitur genres ini memiliki 9490 baris dan 3 kolom.
 
+![fafs](https://github.com/user-attachments/assets/83adf3f3-66f5-474a-a0f4-3e0a2b7722fa)
+Gambar .1 Fitur Rating buku
+Tabel diatas menunjukan banyaknya buku dengan rating. dimana jumlah data dengan banyaknya rating buku. fitur ini memiliki Rating terbanyak 4.0 dengan 1,768 ulasan dan Rating terendah 1.3 dan 1.4, masing-masing hanya memiliki 3 ulasan. Jumlah rating tertinggi di atas 4: 4.3 dengan 1,079 ulasan.
+
 # Data Prepartion
 ## Handling Data
 Beberapa kolom mungkin tidak diperlukan dalam analisis atau tujuan spesifik yang ingin dicapai. Misalnya, kolom-kolom yang berkaitan dengan data penerbitan, peringkat aktivitas, atau informasi terkait lainnya mungkin tidak relevan jika fokus analisis adalah pada aspek lain dari dataset. maka beberapa dataset didrop agar meninggkatkan performa dan tidak overfitting pada model.
@@ -103,7 +107,7 @@ Dalam model ini, fungsi `TfidfVectorizer()` dari library `Scikit-learn` digunaka
 
 <img width="1101" alt="Screenshot 2024-11-12 165938" src="https://github.com/user-attachments/assets/b1b3f9bd-5b80-47a0-8ea4-8f6e3ec2619f">
 
-Gambar .1 Vektorisasi Menggunakan TF-IDF
+Gambar .2 Vektorisasi Menggunakan TF-IDF
 
 # Modelling
 ## Cosine Similarity
@@ -113,14 +117,14 @@ $\cos \theta = \dfrac{A.B}{||A||||B||}$
 
 <img width="1142" alt="Screenshot 2024-11-12 191354" src="https://github.com/user-attachments/assets/7df590ac-1c7b-47c2-971a-d02cf2c9cb96">
 
-Gambar .2 Cosine Similarity
+Gambar .3 Cosine Similarity
 
 ## Recommendations Function
 Proses Modelling untuk membuat sebuah model Book Recommendations merupakan fungsi untuk mendapat _top-N Recommendations_. Setelah vektroisasi dari **Cosine Similarity** kita dapat menggunakan fitur `genres`. Hasil Recommendations dapat menerima input berupa judul buku `name` dan `genres`.
 
 <img width="1151" alt="Screenshot 2024-11-12 192343" src="https://github.com/user-attachments/assets/28aaa7bd-15d9-459f-be0c-c556a7b7383c">
 
-Gambar .3 top 5 Recommendations Book Function
+Gambar .4 top 5 Recommendations Book Function
 
 # Evaluasi
 Dalam project machine learning kali ini pembuatan model dengan menggunakan metode Content-Based Filtering dengan Ventorisasi **TF-IDF** dan **Cosine Similarity** untuk dapat menemukan derajat kemiripan antar `genres` buku dan membuat function untuk menampilkan beberapa rekomendasi buku dengan input judul buku. Pengukuran hasi yang diberikan dengan Precision untuk mengukur keakuratan model dapat diberikan dengan **formula metrik** rumus presisi :
