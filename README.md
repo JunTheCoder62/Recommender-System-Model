@@ -1,6 +1,5 @@
-# Recommender-System-Model
 # Background
-Recommender Systems are intelligent systems which are used as an expert in making decisions in real life problems. They have replicated the human experts and positively affected the e-commerce by changing the behavior of customers and sellers. Book Recommender Systems (BRS) help the librarians in the management of library catalog efficiently. It supports the readers in choosing the best book for them. Merchants implement the BRS to manage their inventory and gain more profit. In this paper, we have discussed traditional techniques of recommendation, machine learning techniques and their categories i.e. supervised, unsupervised, semi-supervised and reinforcement learning. Also, Machine Learning (ML) techniques used for the book recommendation and their effect on book recommender systems have been discussed. The work will help the researchers in exploring new dimension for recommendation technology in general and book recommendation in particular.
+Sistem Rekomendasi merupakan sistem cerdas yang digunakan sebagai ahli dalam membuat keputusan dalam masalah kehidupan nyata. Mereka telah mereplikasi pakar manusia dan berdampak positif pada e-commerce dengan mengubah perilaku pelanggan dan penjual. Sistem Rekomendasi Buku (BRS) membantu pustakawan dalam mengelola katalog perpustakaan secara efisien. Ini mendukung pembaca dalam memilih buku terbaik untuk mereka. Pedagang menerapkan BRS untuk mengelola inventaris mereka dan mendapatkan lebih banyak keuntungan. Dalam makalah ini, kami telah membahas teknik rekomendasi tradisional, teknik pembelajaran mesin dan kategorinya yaitu pembelajaran terbimbing, tidak terbimbing, semi-terbimbing dan penguatan. Selain itu, teknik Pembelajaran Mesin (ML) yang digunakan untuk rekomendasi buku dan pengaruhnya terhadap sistem rekomendasi buku telah dibahas. Pekerjaan ini akan membantu para peneliti dalam mengeksplorasi dimensi baru untuk teknologi rekomendasi secara umum dan rekomendasi buku secara khusus.
 
 # Business Understanding
 ## Problem Statement
@@ -8,8 +7,15 @@ Recommender Systems are intelligent systems which are used as an expert in makin
 - Bagaimana Evaluasi model yang dibuat dengan menggunakan metode Content - Based Filtering ?
 
 ## Goals
-- Pembuatan Model Machine Learning dengan menggunakan metode Content - Based Filtering untuk Rekomendasi buku.
-- Evaluasi model dengan metode Content - Based Filtering agar model akurat.
+- Meningkatkan kepuasan pengguna dengan menyediakan rekomendasi buku yang relevan dan sesuai dengan preferensi mereka, sehingga mendorong peningkatan waktu yang dihabiskan di platform.
+
+- Meningkatkan loyalitas pelanggan dan memperkuat retensi pengguna melalui rekomendasi yang lebih personal dan tepat sasaran, yang diharapkan dapat meningkatkan konversi pembelian buku.
+
+
+## Solution Statement
+- Mengembangkan model rekomendasi buku menggunakan metode Content-Based Filtering untuk menyarankan buku berdasarkan kesamaan atribut (genre, tag, deskripsi) dengan buku yang telah disukai atau dibaca oleh pengguna. Model ini akan mengidentifikasi buku-buku serupa dengan preferensi genres pengguna guna memberikan rekomendasi yang lebih relevan.
+
+- Melakukan evaluasi kinerja model menggunakan metrik evaluasi seperti Precision dan Recall, untuk memastikan rekomendasi yang dihasilkan akurat dan relevan dengan preferensi pengguna, sehingga dapat meningkatkan kepuasan dan loyalitas pengguna. Mengoptimalkan hasil model dengan eksperimen berulang pada parameter dan fitur, guna mencapai akurasi yang lebih tinggi, yang pada akhirnya akan meningkatkan pengalaman pengguna dan mendorong lebih banyak konversi pembelian buku di platform.
 
 # Data Understanding
 Source data yang didapat merupakan data yang berasal dari Githun dengan Source Link: [Github](https://github.com/shaido987/novel-dataset/tree/master). Dengan jumlah data sebanyak 21,831. terdiri dari :
@@ -45,6 +51,11 @@ Source data yang didapat merupakan data yang berasal dari Githun dengan Source L
 |                                | Recommended Series IDs                     | ID dari seri yang direkomendasikan berdasarkan novel ini            |
 |                                | Recommendation List IDs                    | ID dari daftar rekomendasi yang mencakup novel ini                  |
 
+# EDA
+## Univariate Analysis
+![Scrdsds](https://github.com/user-attachments/assets/f359d446-a489-495d-aeb6-cdebea521e5a)
+Gambar .0 Fitur genres buku
+Tabel ini memberikan gambaran tentang kombinasi genre buku yang ada dalam dataset, jumlah data untuk setiap kombinasi, dan persentase dari keseluruhan dataset. fitur genres ini memiliki 9490 baris dan 3 kolom.
 
 # Data Prepartion
 ## Handling Data
@@ -71,6 +82,7 @@ df = df.drop(['start_year', 'original_language', 'original_publisher',
 
 Diatas merupakan data yang akan digunakan sebagai fitur dalam model, dengan metode Content-Based Filtering.
 
+
 ## Handling Missing Value
 Pada dataset yang dipilih terdapat `0` missing value sehingga data dapat langsung digunakan untuk model machine learning yang akan digunakan.
 | Column         | Missing Values |
@@ -84,10 +96,7 @@ Pada dataset yang dipilih terdapat `0` missing value sehingga data dapat langsun
 | `rating_votes` | 0              |
 
 
-# Modelling
 ## Vektrorisasi Menggunakan TF-IDF
-TF-IDF adalah algoritma yang mengidentifikasi kata-kata penting dalam suatu corpus. TF (Term Frequency) mewakili frekuensi kemunculan kata dalam teks, dihitung dari jumlah kemunculan kata tertentu dibandingkan total kata dalam corpus. Sementara itu, IDF (Inverse Document Frequency) mengukur seberapa penting suatu kata dalam keseluruhan corpus.
-
 Dalam sistem rekomendasi buku ini, kolom `genres` digunakan untuk menemukan kemiripan antar buku, yang memungkinkan kita menghitung nilai kesamaan antara satu buku dengan buku lainnya. Untuk mendapatkan nilai kemiripan tersebut, kolom `genres` diubah menjadi vektor menggunakan algoritma TF-IDF.
 
 Dalam model ini, fungsi `TfidfVectorizer()` dari library `Scikit-learn` digunakan untuk mengonversi kolom "genre" pada dataset menjadi vektor, dengan hasil vektorisasi yang ditampilkan pada gambar berikut.
@@ -96,8 +105,11 @@ Dalam model ini, fungsi `TfidfVectorizer()` dari library `Scikit-learn` digunaka
 
 Gambar .1 Vektorisasi Menggunakan TF-IDF
 
+# Modelling
 ## Cosine Similarity
 Setelah data dikonversi menjadi bentuk vektor, selanjutnya ukur tingkat kesamaan antara dua vektor dan menentukan apakah kedua vektor tersebut menunjuk ke arah yang sama. Semakin kecil sudut cosinus, semakin besar nilai cosine similarity.
+
+$\cos \theta = \dfrac{A.B}{||A||||B||}$
 
 <img width="1142" alt="Screenshot 2024-11-12 191354" src="https://github.com/user-attachments/assets/7df590ac-1c7b-47c2-971a-d02cf2c9cb96">
 
@@ -111,7 +123,7 @@ Proses Modelling untuk membuat sebuah model Book Recommendations merupakan fungs
 Gambar .3 top 5 Recommendations Book Function
 
 # Evaluasi
-Dalam project machine learning kali ini pembuatan model dengan menggunakan metode Content-Based Filtering dengan Ventorisasi TF-IDF dan Cosine Similarity untuk dapat menemukan derajat kemiripan antar `genres` buku dan membuat function untuk menampilkan beberapa rekomendasi buku dengan input judul buku. Pengukuran hasi yang diberikan dengan Precision untuk mengukur keakuratan model dapat diberikan dengan rumus presisi :
+Dalam project machine learning kali ini pembuatan model dengan menggunakan metode Content-Based Filtering dengan Ventorisasi **TF-IDF** dan **Cosine Similarity** untuk dapat menemukan derajat kemiripan antar `genres` buku dan membuat function untuk menampilkan beberapa rekomendasi buku dengan input judul buku. Pengukuran hasi yang diberikan dengan Precision untuk mengukur keakuratan model dapat diberikan dengan **formula metrik** rumus presisi :
 
 $$
 \text{Precision} = \dfrac{\text{of our recommendations that are relevant}}{\text{of the items we recommended}}
